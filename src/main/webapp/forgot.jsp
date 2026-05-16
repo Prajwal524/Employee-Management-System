@@ -25,15 +25,25 @@
         <p class="text-sm text-gray-400 text-center mb-6">
             Enter your email and set a new password
         </p>
+        
+        <% String success = (String)request.getAttribute("success"); %>
+		<% if(success != null){ %>
+		    <h6 class="text-green-700"><%= success %></h6>
+		<% } %>
+        
+        <%String error=(String)request.getAttribute("error"); %>
+        <%if(error!=null){ %>
+        <h6 class="text-red-700"><%= error %></h6>
+        <%} %>
 
-        <form action="reset-password" method="POST" class="space-y-5">
+        <form action="forgotPassword" method="POST" class="space-y-5">
 
            
             <div>
                 <label class="block mb-1 text-sm">Email</label>
                 <input 
-                    type="email" 
-                    name="email" 
+                    type="email"
+                    name="mail" 
                     placeholder="Enter your email"
                     class="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
                     required
@@ -44,7 +54,7 @@
                 <label class="block mb-1 text-sm">New Password</label>
                 <input 
                     type="password" 
-                    name="newPassword" 
+                    name="password" 
                     placeholder="Enter new password"
                     class="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
                     required

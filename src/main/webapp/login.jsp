@@ -22,6 +22,11 @@
         <h2 class="text-2xl font-bold text-center text-blue-400 mb-6">
             Login
         </h2>
+        
+        <%String success=(String)request.getAttribute("success"); %>
+        <%if(success!=null){ %>
+        <h6 class="text-green-700"><%= success %></h6>
+        <%} %>
 
         <form action="login" method="POST" class="space-y-5">
 
