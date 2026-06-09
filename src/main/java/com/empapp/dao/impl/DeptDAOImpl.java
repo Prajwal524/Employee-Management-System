@@ -22,7 +22,7 @@ private Connection con;
 
 	@Override
 	public void addDept(Dept d) {
-		String query="insert into dept values (0,?,?)";
+		String query="insert into department values (0,?,?)";
 		
 		try {
 			PreparedStatement ps=con.prepareStatement(query);
@@ -42,7 +42,7 @@ private Connection con;
 	public Dept findById(Integer id) {
 		// TODO Auto-generated method stub
 		Dept d=null;
-		String query="select * from dept where dno=?";
+		String query="select * from department where dno=?";
 		
 		try {
 			PreparedStatement ps=con.prepareStatement(query);
@@ -53,7 +53,7 @@ private Connection con;
 				d=new Dept();
 				d.setDno(rs.getInt("dno"));
 				d.setDname(rs.getString("dname"));
-				d.setDname(rs.getString("location"));
+				d.setLocation(rs.getString("location"));
 			}
 			
 		} catch (SQLException e) {
@@ -67,30 +67,33 @@ private Connection con;
 
 	@Override
 	public List<Dept> findAll() {
-		List<Dept> res=new ArrayList<>();
-		
-		Dept d=null;
-		
-		String query="select * from emp";
-		PreparedStatement ps;
-		try {
-			ps = con.prepareStatement(query);
-			ResultSet rs=ps.executeQuery();
-			
-			while(rs.next()) {
-				d=new Dept();
-				d.setDno(rs.getInt("id"));
-				d.setDname(rs.getString("dname"));
-				d.setLocation(rs.getString("location"));
-				res.add(d);
-			}
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-			System.out.println("Failed to fetch data");
-		}
-				
-		return res;
+
+	    List<Dept> res = new ArrayList<>();
+	    Dept d = null;
+	    String query = "select * from department";
+
+	    try {
+
+	        PreparedStatement ps = con.prepareStatement(query);
+	        ResultSet rs = ps.executeQuery();
+
+	        while(rs.next()) {
+
+	            d = new Dept();
+	            d.setDno(rs.getInt("dno"));
+	            d.setDname(rs.getString("dname"));
+	            d.setLocation(rs.getString("location"));
+
+	            res.add(d);
+	        }
+
+	    } catch (SQLException e) {
+
+	        e.printStackTrace();
+	        System.out.println("Failed to fetch department data");
+	    }
+
+	    return res;
 	}
 
 	@Override
@@ -104,7 +107,7 @@ private Connection con;
 	@Override
 	public void deleteDept(Integer dno) {
 		// TODO Auto-generated method stub
-		String query="delete from dept where id=?";
+		String query="delete from department where id=?";
 		try {
 			PreparedStatement ps=con.prepareStatement(query);
 			ps.setInt(1,dno);
