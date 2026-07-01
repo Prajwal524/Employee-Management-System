@@ -1,4 +1,3 @@
-# Employee-Management-System
 # 🏢 Employee Management System
 
 A **Java Web Application** for managing employee records using **Servlets, JSP, JDBC, and MySQL** with the **DAO pattern**, deployed on **Apache Tomcat 10.1**.
